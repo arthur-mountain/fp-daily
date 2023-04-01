@@ -4,7 +4,7 @@
  *  curry, commpose, pipe ||
  *  Ramda 的auto curry 與 "Function first，Data last"
  *  更很容易寫出 Pointfree Style 的程式碼。
- *  */
+ */
 const R = {
   pipe:
     (...fns) =>
