@@ -34,3 +34,21 @@ Box2("a").map((x) => x.toUpperCase()).value; //'A'
 // `x 在使用完畢後就會消失`，因此不用煩惱現在 x 到底是多少，
 // 但該 state 狀態會一直存在(因為有回傳一個`包含運算結果的新Box`)
 // 只需要去記憶現在的狀態結果。
+
+/***************  practice  ********************/
+const functorBox = (val) => ({
+  // val,
+  map: (fn) => functorBox(fn(val)), // always return a new functorBox,
+  fold: (fn) => fn(val), // unwrap box to get val
+});
+
+const functorResult = functorBox(10)
+  .map((val) => val * 2)
+  .map((val) => val + 10)
+  .fold((val) => val);
+
+const applicativeFunctorBox = (fn) => ({
+  of: (val) => applicativeFunctorBox(() => val), // setup value
+  map: (fn2) => applicativeFunctorBox(),
+  fold: (x) => fn(x),
+});
